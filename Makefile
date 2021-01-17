@@ -1,5 +1,5 @@
 # A simple Makefile for compiling small SDL projects
-
+# Template from tutorial: https://www.youtube.com/watch?v=yFLa3ln16w0
 # set the compiler
 CC := gcc
 
