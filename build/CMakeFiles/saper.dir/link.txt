@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/saper.dir/main.c.o  -o saper 
