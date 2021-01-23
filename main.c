@@ -563,7 +563,7 @@ int main(int argc, char *argv[])
     m=10;
     n+=2;
     m+=2;
-    
+    int odsloniete = n*m;
 start: ;
     
     //Utworzenie planszy generujacej pozycje bomb, zapisujaca wartosci na planszy i zapamietujacej odkryte pola
@@ -625,6 +625,10 @@ start: ;
     rect.w = 10;
     SDL_Event event;
     
+    
+    int time1 = time(0);
+    int time2;
+    int timen;
     //Wlasciwa gra
     
     while(!close_requested)
@@ -665,6 +669,77 @@ start: ;
         else if (ile_zostalo%10 == 9)
             SDL_RenderCopy(rend, l9, NULL, &rect);
         
+        time2 = time(0);
+        timen = time2 - time1;
+        
+        rect.x = 70;
+        
+        if (timen / 100 == 0)
+            SDL_RenderCopy(rend, l0, NULL, &rect);
+        else if (timen / 100 == 1)
+            SDL_RenderCopy(rend, l1, NULL, &rect);
+        else if (timen / 100 == 2)
+            SDL_RenderCopy(rend, l2, NULL, &rect);
+        else if (timen / 100 == 3)
+            SDL_RenderCopy(rend, l3, NULL, &rect);
+        else if (timen / 100 == 4)
+            SDL_RenderCopy(rend, l4, NULL, &rect);
+        else if (timen / 100 == 5)
+            SDL_RenderCopy(rend, l5, NULL, &rect);
+        else if (timen / 100 == 6)
+            SDL_RenderCopy(rend, l6, NULL, &rect);
+        else if (timen / 100 == 7)
+            SDL_RenderCopy(rend, l7, NULL, &rect);
+        else if (timen / 100 == 8)
+            SDL_RenderCopy(rend, l8, NULL, &rect);
+        else if (timen / 100 == 9)
+            SDL_RenderCopy(rend, l9, NULL, &rect);
+        
+        rect.x = 80;
+        
+        if ((timen % 100) / 10 == 0)
+            SDL_RenderCopy(rend, l0, NULL, &rect);
+        else if ((timen % 100) / 10 == 1)
+            SDL_RenderCopy(rend, l1, NULL, &rect);
+        else if ((timen % 100) / 10 == 2)
+            SDL_RenderCopy(rend, l2, NULL, &rect);
+        else if ((timen % 100) / 10 == 3)
+            SDL_RenderCopy(rend, l3, NULL, &rect);
+        else if ((timen % 100) / 10 == 4)
+            SDL_RenderCopy(rend, l4, NULL, &rect);
+        else if ((timen % 100) / 10 == 5)
+            SDL_RenderCopy(rend, l5, NULL, &rect);
+        else if ((timen % 100) / 10 == 6)
+            SDL_RenderCopy(rend, l6, NULL, &rect);
+        else if ((timen % 100) / 10 == 7)
+            SDL_RenderCopy(rend, l7, NULL, &rect);
+        else if ((timen % 100) / 10 == 8)
+            SDL_RenderCopy(rend, l8, NULL, &rect);
+        else if ((timen % 100) / 10 == 9)
+            SDL_RenderCopy(rend, l9, NULL, &rect);
+        
+        rect.x = 90;
+        
+        if (timen%10 == 0)
+            SDL_RenderCopy(rend, l0, NULL, &rect);
+        else if (timen%10 == 1)
+            SDL_RenderCopy(rend, l1, NULL, &rect);
+        else if (timen%10 == 2)
+            SDL_RenderCopy(rend, l2, NULL, &rect);
+        else if (timen%10 == 3)
+            SDL_RenderCopy(rend, l3, NULL, &rect);
+        else if (timen%10 == 4)
+            SDL_RenderCopy(rend, l4, NULL, &rect);
+        else if (timen%10 == 5)
+            SDL_RenderCopy(rend, l5, NULL, &rect);
+        else if (timen%10 == 6)
+            SDL_RenderCopy(rend, l6, NULL, &rect);
+        else if (timen%10 == 7)
+            SDL_RenderCopy(rend, l7, NULL, &rect);
+        else if (timen%10 == 8)
+            SDL_RenderCopy(rend, l8, NULL, &rect);
+        else if (timen%10 == 9)
+            SDL_RenderCopy(rend, l9, NULL, &rect);
         
         int mouse_x, mouse_y;
         int mysz = SDL_GetMouseState(&mouse_x,&mouse_y);
@@ -736,12 +811,19 @@ start: ;
         if ( mysz & SDL_BUTTON(SDL_BUTTON_LEFT) )
         {
             if (mouse_y >= 100)
+            {
+                odsloniete = 100;
                 goto start;
+            }
             else if ( plansza3[mouse_x/10][mouse_y/10] == 0 )
             {
                 plansza3[mouse_x/10][mouse_y/10]=1;
+                odsloniete --;
+                if (odsloniete == 0)
+                    goto koniec;
                 if (plansza2[mouse_x/10][mouse_y/10] == 9)
                 {
+                    koniec:
                     for ( i=0;i<n-2;i++){
                         for ( j=0;j<m-2;j++)
                         {
@@ -833,11 +915,15 @@ start: ;
             {
                 plansza3[mouse_x/10][mouse_y/10] = 2;
                 ile_zostalo-=1;
+                odsloniete --;
+                if (odsloniete == 0)
+                    goto koniec;
             }
             else if ( plansza3[mouse_x/10][mouse_y/10] == 2 )
             {
                 plansza3[mouse_x/10][mouse_y/10] = 0;
                 ile_zostalo+=1;
+                odsloniete ++;
             }
         }
         

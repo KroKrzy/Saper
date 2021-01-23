@@ -17,3 +17,6 @@ Runtime=Host System
 
 [Project]
 VersionControlSupport=kdevgit
+
+[SourceFileTemplates]
+LastUsedTemplate=/home/student/.local/share/kdevfiletemplates/template_descriptions/python_basic.desktop
